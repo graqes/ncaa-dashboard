@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NCAA Women's Basketball Statistics</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <h1 id="page-title">NCAA Women's Basketball Statistics</h1>
+        <p class="subtitle" id="page-subtitle">Team rankings and league trends by season (2014-2026)</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== Overview view ===================== -->
+    <div class="layout" id="view-overview">
+      <section class="panel" aria-labelledby="rankings-heading">
+        <h2 id="rankings-heading">Team Rankings: <span id="season-label">...</span></h2>
+
+        <div class="controls">
+          <div class="field">
+            <label for="search">Find a team</label>
+            <input type="search" id="search" placeholder="e.g. Purdue, UConn, PUR"
+                   autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="season-select">Season</label>
+            <select id="season-select"></select>
+          </div>
+        </div>
+
+        <p id="list-status" class="status" role="status">Loading teams...</p>
+        <ul class="team-list" id="team-list"></ul>
+      </section>
+
+      <aside class="panel" aria-labelledby="timeline-heading">
+        <h2 id="timeline-heading">League timeline</h2>
+
+        <div class="chart-box">
+          <canvas id="trend-chart"
+                  aria-label="Line chart of a league average per game by season"
+                  role="img"></canvas>
+        </div>
+
+        <div class="field" style="margin-bottom: 10px;">
+          <label for="trend-metric">Timeline metric</label>
+          <select id="trend-metric">
+            <option value="avg_points">Points per game</option>
+            <option value="avg_assists">Assists per game</option>
+            <option value="avg_fouls">Fouls per game</option>
+            <option value="avg_steals">Steals per game</option>
+            <option value="avg_blocks">Blocks per game</option>
+            <option value="avg_three_pt_attempts">3-point attempts per game</option>
+            <option value="avg_offensive_rebounds">Offensive rebounds per game</option>
+            <option value="avg_defensive_rebounds">Defensive rebounds per game</option>
+          </select>
+        </div>
+
+        <div id="season-timeline" role="list"></div>
+      </aside>
+    </div>
+
+    <!-- ===================== Team view ===================== -->
+    <div class="layout" id="view-team" hidden>
+      <section class="panel" aria-labelledby="scatter-heading">
+        <h2 id="scatter-heading">Every game: box score stat vs points scored</h2>
+
+        <div class="controls">
+          <div class="field">
+            <label for="team-season-select">Season</label>
+            <select id="team-season-select"></select>
+          </div>
+          <div class="field">
+            <label id="stat-label" for="stat-toggles">Statistic on the x-axis</label>
+            <div class="toggle-group" id="stat-toggles" role="group"
+                 aria-labelledby="stat-label"></div>
+          </div>
+        </div>
+
+        <div class="chart-box tall">
+          <canvas id="scatter-chart" role="img"
+                  aria-label="Scatter plot of the selected statistic against points scored, one dot per game"></canvas>
+        </div>
+
+        <p id="scatter-status" class="status" role="status">Loading games...</p>
+      </section>
+
+      <aside class="panel" aria-labelledby="history-heading">
+        <h2 id="history-heading">Season history</h2>
+
+        <div class="chart-box">
+          <canvas id="history-chart" role="img"
+                  aria-label="Bar chart of this team's win rate in each season"></canvas>
+        </div>
+
+        <p><a href="#" id="back-link">&larr; Back to all teams</a></p>
+      </aside>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    Source: NCAA Women's Basketball dataset (BTAA Love Data Week), box scores via ESPN.
+    Seasons from 2013-14; teams with fewer than 15 games in a season are excluded.
+  </footer>
+
+  <script src="js/chart.umd.min.js"></script>
+  <script src="data/sample.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
